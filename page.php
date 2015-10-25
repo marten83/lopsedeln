@@ -6,6 +6,8 @@ $password = "root";
 $dbname = "myDB";
 $image=$_GET['image'];
 
+$getRow = '"'.$image.'.jpg"';
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 mysql_query( "SET NAMES utf8");
@@ -15,22 +17,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, name, email, image FROM Lop";
+$sql = "SELECT id, name, email, image FROM Lop where image = $getRow";
 $result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$name = $row["name"];
+$email = $row["email"];
 
-$name;
-$email;
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-    	if($row["image"] == $image.'.jpg'){
-        	$name = $row["name"];
-        	$email = $row["email"];
-    	}
-    }
-} else {
-    echo "0 results";
-}
 
 ?>
 <?php header('Content-type: text/plain; charset=utf-8'); ?>
