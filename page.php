@@ -41,8 +41,8 @@ $email = $row["email"];
   <!-- for Facebook -->          
 	<meta property="og:title" content="Mitt NA-Löp" />
 	<meta property="og:type" content="article" />
-	<meta property="og:image" content="http://duadmin.azurewebsites.net/test/lop/bilder/<?php echo $image?>.jpg" />
-	<meta property="og:url" content="http://duadmin.azurewebsites.net/test/lop/page.php?image=<?php echo $image?>" />
+	<meta property="og:image" content="bilder/<?php echo $image?>.jpg" />
+	<meta property="og:url" content="page.php?image=<?php echo $image?>" />
 	<meta property="og:description" content="Skapa din egen löpsedel på na.se" />
 <style>
 img {
@@ -57,12 +57,6 @@ img {
 <?php
 		echo '<div>'.$name.'</div>';
 		echo '<div>'.$email.'</div>';
-
-		$jsonfile = json_decode(file_get_contents('json/'.$image.'.js'));
-		foreach($jsonfile as $key => $value) {
-			print '<p>skapad av: '.$value->name.'<p>';
-			print '<p>'.$value->email.'<p>';
-		}
 ?>
 <img src="bilder/<?php echo $image?>.jpg"/>
 </body>
